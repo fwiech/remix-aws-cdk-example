@@ -6,3 +6,10 @@ node_modules
 
 sam.json
 sam.yaml
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+artifacts
+
+.idea
