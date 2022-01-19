@@ -33,13 +33,10 @@ export class RemixStack extends cdk.Stack {
       handler: 'handler',
       entry: join(__dirname, 'server/index.js'),
       environment: {
-        AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
         NODE_ENV: "production",
       },
       bundling: {
-        minify: true,
-        sourceMap: true,
-        target: "es2020",
+        nodeModules: ['@remix-run/architect', 'react', 'react-dom'],
       },
       timeout: cdk.Duration.seconds(10),
       logRetention: logs.RetentionDays.THREE_DAYS,
