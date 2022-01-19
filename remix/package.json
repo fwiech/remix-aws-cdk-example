@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "@remix-aws-cdk-example/remix",
+  "version": "0.0.0",
+  "scripts": {
+    "postinstall": "remix setup node",
+    "start": "node concurrently.js",
+    "dev": "remix watch",
+    "arc:sandbox": "arc sandbox",
+    "build": "remix build"
+  },
+  "dependencies": {
+    "@remix-run/architect": "^1.1.1",
+    "@remix-run/react": "^1.1.1",
+    "aws-sdk": "2.1059.0",
+    "remix": "^1.1.1"
+  },
+  "devDependencies": {
+    "@architect/architect": "^9.5.4",
+    "@remix-run/dev": "^1.1.1",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "concurrently": "^7.0.0",
+    "typescript": "^4.5.4"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false
+}

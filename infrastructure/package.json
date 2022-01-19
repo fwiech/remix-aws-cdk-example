@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "@remix-aws-cdk-example/infrastructure",
+  "version": "0.0.0",
+  "bin": {
+    "infrastructure": "bin/infrastructure.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "synth": "cdk synth -e RemixStack > ./RemixStack.yml",
+    "deploy": "cdk deploy 'RemixStack' --outputs-file ./RemixStack.json"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "2.8.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.8.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.8.0-alpha.0",
+    "@remix-run/architect": "^1.1.1",
+    "aws-cdk-lib": "2.8.0",
+    "constructs": "^10.0.0",
+    "esbuild": "^0.14.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "source-map-support": "^0.5.16"
+  }
+}

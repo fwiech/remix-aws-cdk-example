@@ -23,7 +23,7 @@ export class RemixStack extends cdk.Stack {
     const bucket = new s3.Bucket(this, "StaticAssetsBucket");
 
     new s3deploy.BucketDeployment(this, 'DeployStaticAssets', {
-      sources: [s3deploy.Source.asset(join(__dirname, 'public'))],
+      sources: [s3deploy.Source.asset(join(__dirname, '../../remix/public'))],
       destinationBucket: bucket,
       destinationKeyPrefix: '_static'
     });
@@ -31,7 +31,7 @@ export class RemixStack extends cdk.Stack {
     const fn = new NodejsFunction(this, 'RequestHandler', {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'handler',
-      entry: join(__dirname, 'server/index.js'),
+      entry: join(__dirname, '../../remix/server/index.js'),
       environment: {
         NODE_ENV: "production",
       },
@@ -90,12 +90,3 @@ export class RemixStack extends cdk.Stack {
     });
   }
 }
-
-const env: cdk.Environment = {
-  account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION,
-};
-
-const app = new cdk.App();
-
-new RemixStack(app, "remix", {env});
