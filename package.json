@@ -7,10 +7,16 @@
     "start": "yarn --cwd remix start",
     "build": "yarn --cwd remix build",
     "synth": "yarn --cwd infrastructure synth",
-    "deploy": "yarn --cwd infrastructure deploy"
+    "deploy": "yarn --cwd infrastructure deploy",
+    "format:check": "prettier . --check --ignore-unknown",
+    "format:write": "prettier . --write --ignore-unknown"
   },
-  "workspaces": ["infrastructure", "remix"],
+  "workspaces": [
+    "infrastructure",
+    "remix"
+  ],
   "devDependencies": {
+    "prettier": "^2.5.1",
     "typescript": "^4.6.2"
   }
 }
