@@ -1,6 +1,3 @@
 {
-  "references": [
-    { "path": "infrastructure"},
-    { "path": "remix" }
-  ]
+  "references": [{ "path": "infrastructure" }, { "path": "remix" }]
 }

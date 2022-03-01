@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
-import {Construct} from "constructs";
-import {join} from "path";
+import { Construct } from "constructs";
+import { join } from "path";
 import * as cdk from "aws-cdk-lib";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as s3 from "aws-cdk-lib/aws-s3";
@@ -9,10 +9,10 @@ import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as logs from "aws-cdk-lib/aws-logs";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
-import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import * as origin from "aws-cdk-lib/aws-cloudfront-origins";
 import * as api from "@aws-cdk/aws-apigatewayv2-alpha";
-import {HttpLambdaIntegration} from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
 
 export class RemixStack extends cdk.Stack {
   readonly distributionUrlParameterName = "/remix/distribution/url";
@@ -22,21 +22,21 @@ export class RemixStack extends cdk.Stack {
 
     const bucket = new s3.Bucket(this, "StaticAssetsBucket");
 
-    new s3deploy.BucketDeployment(this, 'DeployStaticAssets', {
-      sources: [s3deploy.Source.asset(join(__dirname, '../../remix/public'))],
+    new s3deploy.BucketDeployment(this, "DeployStaticAssets", {
+      sources: [s3deploy.Source.asset(join(__dirname, "../../remix/public"))],
       destinationBucket: bucket,
-      destinationKeyPrefix: '_static'
+      destinationKeyPrefix: "_static",
     });
 
-    const fn = new NodejsFunction(this, 'RequestHandler', {
+    const fn = new NodejsFunction(this, "RequestHandler", {
       runtime: lambda.Runtime.NODEJS_14_X,
-      handler: 'handler',
-      entry: join(__dirname, '../../remix/server/index.js'),
+      handler: "handler",
+      entry: join(__dirname, "../../remix/server/index.js"),
       environment: {
         NODE_ENV: "production",
       },
       bundling: {
-        nodeModules: ['@remix-run/architect', 'react', 'react-dom'],
+        nodeModules: ["@remix-run/architect", "react", "react-dom"],
       },
       timeout: cdk.Duration.seconds(10),
       logRetention: logs.RetentionDays.THREE_DAYS,
@@ -47,7 +47,7 @@ export class RemixStack extends cdk.Stack {
       payloadFormatVersion: api.PayloadFormatVersion.VERSION_2_0,
     });
 
-    const httpApi = new api.HttpApi(this, 'WebsiteApi', {
+    const httpApi = new api.HttpApi(this, "WebsiteApi", {
       defaultIntegration: integration,
     });
 
@@ -60,13 +60,13 @@ export class RemixStack extends cdk.Stack {
       cookieBehavior: cloudfront.OriginRequestCookieBehavior.all(),
       // https://stackoverflow.com/questions/65243953/pass-query-params-from-cloudfront-to-api-gateway
       headerBehavior: cloudfront.OriginRequestHeaderBehavior.none(),
-    })
+    });
     const requestHandlerBehavior: cloudfront.AddBehaviorOptions = {
       allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
       viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
       originRequestPolicy,
-    }
+    };
 
     const assetOrigin = new origin.S3Origin(bucket);
     const assetBehaviorOptions = {

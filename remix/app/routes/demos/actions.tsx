@@ -51,9 +51,8 @@ export default function ActionsDemo() {
       <main>
         <h2>Actions!</h2>
         <p>
-          This form submission will send a post request that we handle in our
-          `action` export. Any route can export an action to handle data
-          mutations.
+          This form submission will send a post request that we handle in our `action` export. Any route can export an
+          action to handle data mutations.
         </p>
         <Form method="post" className="remix__form">
           <h3>Post an Action</h3>
@@ -79,14 +78,10 @@ export default function ActionsDemo() {
         <h3>Additional Resources</h3>
         <ul>
           <li>
-            Guide:{" "}
-            <a href="https://remix.run/guides/data-writes">Data Writes</a>
+            Guide: <a href="https://remix.run/guides/data-writes">Data Writes</a>
           </li>
           <li>
-            API:{" "}
-            <a href="https://remix.run/api/conventions#action">
-              Route Action Export
-            </a>
+            API: <a href="https://remix.run/api/conventions#action">Route Action Export</a>
           </li>
           <li>
             API:{" "}
