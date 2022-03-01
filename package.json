@@ -11,6 +11,6 @@
   },
   "workspaces": ["infrastructure", "remix"],
   "devDependencies": {
-    "typescript": "^4.5.4"
+    "typescript": "^4.6.2"
   }
 }
